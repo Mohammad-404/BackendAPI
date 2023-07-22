@@ -75,9 +75,41 @@ class customerController extends Controller
         }
     }
 
+    public function CreatePaymentCard(){
+        try {
+            $customer_id = \Auth::id();
+         
+            $ids->create([
+                'customer_id'       => $request->customer_id,
+                'card_no'           => $request->card_no,
+                'card_expire'       => $request->card_expire,
+                'code'              => $request->code
+            ]);
+
+            return $this->returnSuccess(404,'Created Successfully !!');
+
+        } catch (\Exception $ex) {
+            return $this->returnError(404,'Please Contact Support !!');
+        }
+    }
+
+    public function EditPaymentCard($id){
+        try {
+            $payment_information = customerPayment::find($id);
+            if (!$payment_information) {
+                return $this->returnError(404,'ID is not found !!');
+            }
+
+            return $this->returnData('200', 'ok', 'payment_information', $payment_information);
+
+        } catch (\Exception $ex) {
+            return $this->returnError(404,'Please Contact Support !!');
+        }
+    }
+
     public function updatePaymentCard($id){
         try {
-            $ids = customerPayment::find($payment);
+            $ids = customerPayment::find($id);
             if (!$ids) {
                 return $this->returnError(404,'ID is not found !!');
             }
@@ -95,5 +127,21 @@ class customerController extends Controller
         }
     }
 
+    
+    public function RemovePaymentCard($id){
+        try {
+            $ids = customerPayment::find($id);
+            if (!$ids) {
+                return $this->returnError(404,'ID is not found !!');
+            }
+            
+            $ids->delete();
+
+            return $this->returnSuccess(404,'Deleted Successfully !!');
+
+        } catch (\Exception $ex) {
+            return $this->returnError(404,'Please Contact Support !!');
+        }
+    }
     
 }

@@ -74,9 +74,28 @@ Route::group(['prefix'=>'watershop','namespace' => 'Admin','middleware' => ['che
 
 //customer
 Route::group(['prefix'=>'customer','middleware' => ['checkPassword','assign.guard:customer-api']],function () {
-    Route::post('/profile',function(){
-        return \Auth::user();
+
+    Route::group(['prefix' => 'profile','namespace' => 'Customer'],function(){
+        Route::post('/','customerController@profile'); 
+        Route::post('/updateProfile','customerController@updateProfile'); 
     });
+
+    Route::group(['prefix' => 'payment_card','namespace' => 'Customer'],function(){
+        Route::post('/create','customerController@CreatePaymentCard'); 
+        Route::post('/edit/{id}','customerController@EditPaymentCard'); 
+        Route::post('/update/{id}','customerController@updatePaymentCard'); 
+        Route::post('/delete/{id}','customerController@RemovePaymentCard'); 
+    });
+
+    Route::group(['prefix' => 'orders','namespace' => 'Admin'],function(){
+        Route::post('/','ordersController@getOrdersForCustomers');
+        Route::post('/purchase','ordersController@insert');
+    });
+
+    Route::group(['prefix' => 'take','namespace' => 'Customer'],function(){
+        Route::post('/customer_info','customerController@getInfo'); //this to take customer info when he want to purchase order
+    });
+
 });
 
 //delivery
