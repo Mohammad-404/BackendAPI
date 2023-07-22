@@ -22,12 +22,10 @@ class Customer extends Authenticatable implements JWTSubject
      */
     protected $fillable = [
         'phonenumber','username','address','email','password','photo',
-<<<<<<< HEAD
+
         'payment','city','street','bulding_no','apartment_no','nearest_famous_landmark',
         'created_at','updated_at'
-=======
-        'payment','city','street','bulding_no','apartment_no','nearest_famous_landmark','created_at','updated_at'
->>>>>>> 921395e5d3914facbefaf2262f8f8eb3148b9631
+        ,'payment','city','street','bulding_no','apartment_no','nearest_famous_landmark','created_at','updated_at'
     ];
 
     public function scopeSelection($query){
