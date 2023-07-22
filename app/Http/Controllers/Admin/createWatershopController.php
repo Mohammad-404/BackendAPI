@@ -12,10 +12,6 @@ use App\Traits\GeneralTrait;
 class createWatershopController extends Controller
 {
     use GeneralTrait;
-<<<<<<< HEAD
- 
-=======
->>>>>>> 921395e5d3914facbefaf2262f8f8eb3148b9631
 
     public function profile(){
         try {

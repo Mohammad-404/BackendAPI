@@ -2,12 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Admin;
-<<<<<<< HEAD
-use App\Models\Customer;
-use App\Models\Delivery;
-
-=======
->>>>>>> 921395e5d3914facbefaf2262f8f8eb3148b9631
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +15,6 @@ use App\Models\Delivery;
 */
 
 Route::get('/', function () {
-<<<<<<< HEAD
     return "hi";
     // Admin::create([
     //     'phonenumber'       => '0795439152',
@@ -36,13 +29,13 @@ Route::get('/', function () {
     //     'password'          => bcrypt('12345'),
     //     'address'          => 'Amman, Jordan',
     // ]);
-=======
-    Admin::create([
-        'phonenumber'       => '0795439152',
-        'name'              => 'mohammad almasri',
-        'email'             => 'm.almasri97.me@gmail.com',
-        'password'          => bcrypt('12345'),
-    ]);
->>>>>>> 921395e5d3914facbefaf2262f8f8eb3148b9631
+
+    // Admin::create([
+    //     'phonenumber'       => '0795439152',
+    //     'name'              => 'mohammad almasri',
+    //     'email'             => 'm.almasri97.me@gmail.com',
+    //     'password'          => bcrypt('12345'),
+    // ]);
+
 });
 

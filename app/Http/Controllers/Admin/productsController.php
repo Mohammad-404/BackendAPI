@@ -11,7 +11,6 @@ use App\Traits\GeneralTrait;
 class productsController extends Controller
 {
     use GeneralTrait;
-<<<<<<< HEAD
 
     public function uploadImage($folder , $image){
         $image->store('/' ,$folder);
@@ -19,8 +18,6 @@ class productsController extends Controller
         $path       = 'assets/'.$folder.'/'.$filename;
         return $path;
     }
-=======
->>>>>>> 921395e5d3914facbefaf2262f8f8eb3148b9631
     
     public function get(){
         try {
@@ -38,11 +35,8 @@ class productsController extends Controller
 
             $filePath = "";
             if($request -> has('photo')){ //hal find image from request??
-<<<<<<< HEAD
                 $filePath = $this->uploadImage('watershop' , $request->photo);
-=======
                 $filePath = uploadImage('watershop' , $request->photo);
->>>>>>> 921395e5d3914facbefaf2262f8f8eb3148b9631
             }
 
             products::create([
@@ -69,11 +63,8 @@ class productsController extends Controller
 
             $filePath = "";
             if($request->has('photo') != ""){
-<<<<<<< HEAD
                 $filePath = $this->uploadImage('watershop' , $request->photo);
-=======
                 $filePath = uploadImage('watershop' , $request->photo);
->>>>>>> 921395e5d3914facbefaf2262f8f8eb3148b9631
 
                 $ids->update([
                     'watershop_id'                  => $water_shop_id,

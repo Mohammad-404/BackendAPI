@@ -11,7 +11,6 @@ use App\Traits\GeneralTrait;
 class customerController extends Controller
 {
     use GeneralTrait;
-<<<<<<< HEAD
     
     function uploadImage($folder , $image){
         $image->store('/' ,$folder);
@@ -19,9 +18,6 @@ class customerController extends Controller
         $path       = 'assets/'.$folder.'/'.$filename;
         return $path;
     }
-=======
-
->>>>>>> 921395e5d3914facbefaf2262f8f8eb3148b9631
 
     public function getInfo(){ //this function to get all data when cutomer tried to take order.
         try {
@@ -53,11 +49,8 @@ class customerController extends Controller
             
             $filePath = "";
             if($request->has('photo') != ""){
-<<<<<<< HEAD
                 $filePath = $this->uploadImage('customer' , $request->photo);
-=======
                 $filePath = uploadImage('customer' , $request->photo);
->>>>>>> 921395e5d3914facbefaf2262f8f8eb3148b9631
             }            
             
             $ids->update([
