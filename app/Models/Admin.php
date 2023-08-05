@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Models\Delivery;
 use App\Models\products;
+use App\Models\favorite;
 
 class Admin extends Authenticatable implements JWTSubject
 {
@@ -39,6 +40,10 @@ class Admin extends Authenticatable implements JWTSubject
         return $this->hasMany(products::class, 'watershop_id' ,'id'); 
     }  
     // watershope
+
+    public function favorite(){
+        return $this->belongsTo(favorite::class,'watershop_id','id');
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.

@@ -18,7 +18,12 @@ class Products extends Migration
             $table->string('watershop_id');
             $table->string('product_name');
             $table->string('stock_qty');
-            $table->string('product_description');
+            $table->string('item_size');
+            $table->string('item_size1');
+            $table->string('item_size2');
+            $table->string('item_size3');
+            $table->string('new');
+            $table->string('refill');
             $table->string('price');
             $table->string('photo');
             $table->timestamps();

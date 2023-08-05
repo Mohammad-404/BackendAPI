@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\customerPayment;
 use App\Traits\GeneralTrait;
+use App\Models\Admin;
+use App\Models\products;
 
 class customerController extends Controller
 {
@@ -22,7 +24,7 @@ class customerController extends Controller
     public function getInfo(){ //this function to get all data when cutomer tried to take order.
         try {
             $customer_id        = \Auth::id();
-            $data = Customer::where('id',$customer_id)->selection()->with('customerPayment')->get();
+            $data = Customer::where('id',$customer_id)->with('customerPayment')->selection()->get();
             return $this->returnData('200', 'ok', 'customers_information', $data);
         } catch (\Exception $ex) {
             return $this->returnError(404,'Please Contact Support !!');
@@ -39,7 +41,7 @@ class customerController extends Controller
         }
     }
 
-    public function updateProfile(){
+    public function updateProfile(Request $request){
         try {
             $customer_id        = \Auth::id();
             $ids = Customer::find($customer_id);
@@ -75,12 +77,12 @@ class customerController extends Controller
         }
     }
 
-    public function CreatePaymentCard(){
+    public function CreatePaymentCard(Request $request){
         try {
             $customer_id = \Auth::id();
          
-            $ids->create([
-                'customer_id'       => $request->customer_id,
+            customerPayment::create([
+                'customer_id'       => $customer_id,
                 'card_no'           => $request->card_no,
                 'card_expire'       => $request->card_expire,
                 'code'              => $request->code
@@ -107,7 +109,7 @@ class customerController extends Controller
         }
     }
 
-    public function updatePaymentCard($id){
+    public function updatePaymentCard($id, Request $request){
         try {
             $ids = customerPayment::find($id);
             if (!$ids) {
@@ -143,5 +145,38 @@ class customerController extends Controller
             return $this->returnError(404,'Please Contact Support !!');
         }
     }
+
+    //get products it's releated with watershop
+    public function getProductsWaterShop($id){
+        try {
+            $data = Admin::where('id',$id)->with('products')->selection()->get();
+            return $this->returnData('200', 'ok', 'all_products_for_watershop', $data);
+        } catch (\Exception $ex) {
+            return $this->returnError(404,'Please Contact Support !!');
+        }
+    } 
+    
+    //get watershops
+    public function getWaterShops(){
+        try {
+            $data = Admin::selection()->get();
+            return $this->returnData('200', 'ok', 'all_water_shops', $data);
+        } catch (\Exception $ex) {
+            return $this->returnError(404,'Please Contact Support !!');
+        }
+    } 
+
+    //get products details after press on products.
+    public function getProductsDetails($id){
+        try {
+            $data = products::where('id',$id)->selection()->get();
+            return $this->returnData('200', 'ok', 'products_details', $data);
+        } catch (\Exception $ex) {
+            return $this->returnError(404,'Please Contact Support !!');
+        }
+    } 
+
+
+    // 
     
 }

@@ -14,12 +14,16 @@ class products extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'watershop_id','product_name','stock_qty','product_description','price','photo','created_at','updated_at'
+        'watershop_id','product_name','stock_qty'
+        ,'item_size','item_size1','item_size2','item_size3'
+        ,'new','refill','price','photo','created_at','updated_at'
     ];
 
     public function scopeSelection($query){
-        return $query->select('id','watershop_id','product_name','stock_qty','product_description','price','photo',
-                                'created_at','updated_at');
+        return $query->select('id','watershop_id','product_name','stock_qty'
+            ,'item_size','item_size1','item_size2','item_size3'
+            ,'new','refill','price','photo','created_at','updated_at'
+        );
     }
 
     public function watershope(){

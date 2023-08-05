@@ -27,7 +27,7 @@ class ordersController extends Controller
         return $this->returnData('200', 'ok', 'data', $data);
     }
 
-    public function insert(Request $request){ //insert order from customer
+    public function insert(Request $request){ //insert order from the customer
             try {
                 $customer_id        = \Auth::id();
                 $customer_name      = \Auth::name();
